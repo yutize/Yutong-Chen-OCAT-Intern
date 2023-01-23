@@ -1,0 +1,6 @@
+# Configs
+config/*
+!config/default.json
+!config/test.json
+!config/*.secret
+!config/custom-environment-variables.json
