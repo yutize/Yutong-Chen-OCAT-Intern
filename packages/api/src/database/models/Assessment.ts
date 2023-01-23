@@ -16,7 +16,7 @@ InferCreationAttributes<Assessment>
   declare public score: number;
   declare public riskLevel: string;
   declare public catName: string;
-  declare public catDateOfBirth: string;
+  declare public catDateOfBirth: Date;
   declare public createdAt: CreationOptional<Date>;
   declare public updatedAt: CreationOptional<Date>;
   declare public deletedAt: Date | null;
@@ -49,7 +49,7 @@ InferCreationAttributes<Assessment>
         type: DataTypes.STRING,
       },
       catDateOfBirth: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DATEONLY,
       },
       createdAt: {
@@ -61,11 +61,14 @@ InferCreationAttributes<Assessment>
         type: DataTypes.DATE,
       },
       deletedAt: {
+        field: `deleted_at`,
         type: DataTypes.DATE,
       },
       /* eslint-enable sort-keys */
     }, {
+      paranoid: true,
       sequelize,
+      timestamps: true,
     });
 
     return Assessment;
